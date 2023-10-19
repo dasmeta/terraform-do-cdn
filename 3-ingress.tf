@@ -49,7 +49,7 @@ spec:
       paths:
       - backend:
           service:
-            name: proxy-service
+            name: proxy-to-space
             port:
               number: 80
         path: /
@@ -57,7 +57,7 @@ spec:
   tls:
   - hosts:
     - ${var.domain}
-    secretName: ${local.ssl_cert_secret_name}
+    secretName: ${local.ssl_cert_secret_name}-ssl
 EOT
   )
 }
