@@ -3,6 +3,6 @@ module "space" {
   version = "1.0.0"
 
   name        = var.name
-  region      = var.region
   environment = var.environment
+  region      = var.region
 }

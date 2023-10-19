@@ -12,7 +12,7 @@ metadata:
   namespace: ${local.namespace}
 spec:
   type: ExternalName
-  externalName: ${var.name}.${var.region}.cdn.digitaloceanspaces.com
+  externalName: ${module.space.bucket_domain_name}
   ports:
     - name: http
       protocol: TCP
@@ -36,7 +36,7 @@ metadata:
       add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
       proxy_cache off;
       expires off;
-    nginx.ingress.kubernetes.io/upstream-vhost: ${var.name}.${var.region}.cdn.digitaloceanspaces.com
+    nginx.ingress.kubernetes.io/upstream-vhost: ${module.space.bucket_domain_name}
     # nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
     # nginx.ingress.kubernetes.io/use-regex: "true"
     kubernetes.io/ingress.class: nginx
