@@ -1,5 +1,46 @@
 # terraform-do-cdn
-Module to setup CDN using DO Space and k8s (DOKS)
+Module to setup CDN using DO Space and k8s (DOKS).
+
+## How
+Module will create:
+1. DigitalOcean Space bucket
+2. Configure CDN endpoint and attach to the bucket
+3. Create k8s service and ingress resource which will point to CDN.
+
+## Yaml example
+```
+source: dasmeta/cdn/do
+version: 1.0.3
+variables:
+  name: yourappname
+  domain: sandbox.yourdomain.com
+  k8s: k8s-name
+  environment: sandbox
+  region: fra1
+linked_providers:
+  digitalocean:
+    source: digitalocean/digitalocean
+    version: ~> 2.0
+```
+
+## Terraform example
+```
+module "this" {
+  source  = "dasmeta/cdn/do"
+  version = "1.0.3"
+
+  name = "yourappname"
+  domain = "sandbox.yourdomain.com"
+  k8s = "k8s-name"
+  environment = "sandbox"
+  region = "fra1"
+}
+```
+
+## References
+- https://docs.digitalocean.com/products/spaces/reference/s3cmd/
+- https://docs.digitalocean.com/products/spaces/reference/s3cmd-usage/
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
